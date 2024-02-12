@@ -7,13 +7,11 @@ function App() {
   const [todos, setTodos] = useState([]);
 
   const addTodo = (todo) => {
-    setTodos([...todos, todo]);
+    setTodos((prevTodos) => [...prevTodos, todo]);
   };
 
   const deleteTodo = (index) => {
-    const newTodos = [...todos];
-    newTodos.splice(index, 1);
-    setTodos(newTodos);
+    setTodos((prevTodos) => prevTodos.filter((_, i) => i !== index));
   };
 
   return (
