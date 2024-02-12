@@ -21,10 +21,12 @@ describe('App', () => {
 
   test('allows users to delete items from the list', () => {
     const { getByLabelText, getByText, queryByText } = render(<App />);
+    // Add a todo item before attempting to delete
     const input = getByLabelText('Add todo:');
-    fireEvent.change(input, { target: { value: 'New todo' } });
+    fireEvent.change(input, { target: { value: 'Todo to be deleted' } });
     fireEvent.click(getByText('Add'));
+    // Now try to delete the added todo item
     fireEvent.click(getByText('Delete'));
-    expect(queryByText('New todo')).not.toBeInTheDocument();
+    expect(queryByText('Todo to be deleted')).not.toBeInTheDocument();
   });
 });
